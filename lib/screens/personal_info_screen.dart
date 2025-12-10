@@ -92,15 +92,51 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                         itemCount: logs.length,
                         itemBuilder: (context, index) {
                           final log = logs[index];
-                          return Card(
-                            margin: const EdgeInsets.symmetric(vertical: 8),
-                            child: ListTile(
-                              title: Text(log.name, style: const TextStyle(fontWeight: FontWeight.bold)),
-                              subtitle: Text('Mood Score: ${log.moodScore}/10 - ${log.timestamp.toLocal().toString().split(' ')[0]}'),
-                              trailing: const Icon(Icons.arrow_forward_ios),
-                              onTap: () {
-                                context.push('/summary', extra: log);
-                              },
+                          return Dismissible(
+                            key: Key(log.key.toString()),
+                            onDismissed: (direction) {
+                              final deletedLog = ClientLog(
+                                name: log.name,
+                                moodScore: log.moodScore,
+                                emotions: log.emotions,
+                                influences: log.influences,
+                                physicalSensation: log.physicalSensation,
+                                wellbeingActions: log.wellbeingActions,
+                                endOfDayNote: log.endOfDayNote,
+                                timestamp: log.timestamp,
+                              );
+                              final logKey = log.key;
+
+                              log.delete();
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: const Text('Log deleted'),
+                                  action: SnackBarAction(
+                                    label: 'Undo',
+                                    onPressed: () {
+                                      Hive.box<ClientLog>('client_logs').put(logKey, deletedLog);
+                                    },
+                                  ),
+                                ),
+                              );
+                            },
+                            background: Container(
+                              color: Colors.red,
+                              alignment: Alignment.centerRight,
+                              padding: const EdgeInsets.only(right: 20.0),
+                              child: const Icon(Icons.delete, color: Colors.white),
+                            ),
+                            child: Card(
+                              margin: const EdgeInsets.symmetric(vertical: 8),
+                              child: ListTile(
+                                title: Text(log.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+                                subtitle: Text('Mood Score: ${log.moodScore}/10 - ${log.timestamp.toLocal().toString().split(' ')[0]}'),
+                                trailing: const Icon(Icons.arrow_forward_ios),
+                                onTap: () {
+                                  context.push('/summary', extra: log);
+                                },
+                              ),
                             ),
                           );
                         },
