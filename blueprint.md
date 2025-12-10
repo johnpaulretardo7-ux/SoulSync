@@ -1,22 +1,28 @@
-# Project Blueprint
+# SoulSync - App Blueprint
 
 ## Overview
 
-A Flutter application for mood tracking.
+SoulSync is a Flutter application designed to help track daily mood, emotions, and overall well-being for multiple clients. It provides a simple and intuitive interface for a practitioner or user to log feelings for different individuals, identify influencing factors, and reflect on their day. The app aims to promote mindfulness and self-awareness, empowering users to better understand emotional patterns and take small steps towards a healthier mental state, with a clear overview of all clients.
 
-## Style, Design, and Features
+## Implemented Features
 
-### Initial Setup
-- Basic Flutter counter app.
+### Core Features
 
-### Current Implementation
-- **Sign-Up Screen:** A screen for users to create a new account.
+- **Client-based Logging**: The app supports logging for different individuals by asking for a name at the start.
+- **Multi-step Mood Journal**: A guided, multi-step process for logging mood and related factors.
+- **Data Persistence (Session)**: Logs are stored in a static list (`clientLogs`) for the duration of the app session.
+- **Summary Screen**: After completing a log, a summary screen displays all the captured information.
+- **Declarative Routing**: Uses `go_router` for navigation.
+- **Loading Screen**: A cheerful, animated loading screen is displayed when the app starts.
+- **Offline First & Authentication Removal**: The app is designed to be used offline. All login, signup, and password reset functionalities have been removed.
+- **Simplified Home Screen**: A new home screen that prompts for a client's name and starts a new session.
+
+### Styling and Design
+
+- **Cheerful Custom Theme**: The app features a custom theme with a bright, cheerful color scheme (yellow, orange, pink gradients) and uses Google Fonts for a unique, friendly look and feel.
+- **Gradient Background**: A subtle gradient background is used throughout the app for a visually appealing and calming effect.
+- **Consistent UI**: The app uses styled components like `ChoiceChip`, `ElevatedButton`, and `Card` for a polished and consistent user interface.
 
 ## Current Plan
 
-### Goal: Create a Login Screen
-
-1.  **Create `lib/screens/login_screen.dart`:** Implement the login screen UI with a title, prompts, fields for Email and Password, and buttons for "Forgot Password" and "Log In".
-2.  **Update `lib/main.dart`:** Set the `LoginScreen` as the `home` widget in `MaterialApp` to display it on launch.
-3.  **Add Navigation:** Add a button to the `SignupScreen` to navigate to the `LoginScreen`.
-4.  **Format Code:** Run `dart format .` to maintain code quality.
+- **No active development plan. Ready for the next request.**
