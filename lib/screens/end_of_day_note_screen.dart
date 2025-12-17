@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
@@ -32,18 +31,13 @@ class _EndOfDayNoteScreenState extends State<EndOfDayNoteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('End of Day Note for ${widget.name}'),
-      ),
+      appBar: AppBar(title: Text('End of Day Note for ${widget.name}')),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Colors.blue.shade100,
-              Colors.amber.shade100,
-            ],
+            colors: [Colors.blue.shade100, Colors.amber.shade100],
           ),
         ),
         child: SafeArea(
@@ -54,7 +48,9 @@ class _EndOfDayNoteScreenState extends State<EndOfDayNoteScreen> {
               children: [
                 Text(
                   'Any final thoughts or notes?',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 28),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),

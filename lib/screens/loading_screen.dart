@@ -1,8 +1,6 @@
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -43,14 +41,16 @@ class _LoadingScreenState extends State<LoadingScreen> {
             children: [
               Text(
                 'SoulSync',
-                style: GoogleFonts.pacifico(
+                style: TextStyle(
                   fontSize: 60,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   shadows: [
                     Shadow(
                       blurRadius: 10.0,
-                      color: Colors.black.withAlpha(51), // Corrected from withOpacity(0.2)
+                      color: Colors.black.withAlpha(
+                        51,
+                      ), // Corrected from withOpacity(0.2)
                       offset: const Offset(5.0, 5.0),
                     ),
                   ],

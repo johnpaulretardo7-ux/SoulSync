@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -30,21 +29,23 @@ class _WellbeingActionScreenState extends State<WellbeingActionScreen> {
     'Rest': false,
   };
 
+  final Map<String, IconData> _wellbeingActionIcons = {
+    'Exercise': Icons.fitness_center,
+    'Meditate': Icons.self_improvement,
+    'Talk to someone': Icons.people,
+    'Rest': Icons.hotel,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Well-being for ${widget.name}'),
-      ),
+      appBar: AppBar(title: Text('Well-being for ${widget.name}')),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Colors.blue.shade100,
-              Colors.amber.shade100,
-            ],
+            colors: [Colors.blue.shade100, Colors.amber.shade100],
           ),
         ),
         child: SafeArea(
@@ -55,12 +56,15 @@ class _WellbeingActionScreenState extends State<WellbeingActionScreen> {
               children: [
                 Text(
                   'What actions will you take for your well-being?',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 28),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),
                 ..._wellbeingActions.keys.map((action) {
                   return CheckboxListTile(
+                    secondary: Icon(_wellbeingActionIcons[action]),
                     title: Text(action),
                     value: _wellbeingActions[action],
                     onChanged: (bool? value) {
@@ -73,14 +77,17 @@ class _WellbeingActionScreenState extends State<WellbeingActionScreen> {
                 const SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () {
-                    context.go('/end_of_day_note', extra: {
-                      'name': widget.name,
-                      'moodScore': widget.moodScore,
-                      'selectedEmotions': widget.selectedEmotions,
-                      'selectedInfluences': widget.selectedInfluences,
-                      'physicalStates': widget.physicalStates,
-                      'wellbeingActions': _wellbeingActions,
-                    });
+                    context.go(
+                      '/end_of_day_note',
+                      extra: {
+                        'name': widget.name,
+                        'moodScore': widget.moodScore,
+                        'selectedEmotions': widget.selectedEmotions,
+                        'selectedInfluences': widget.selectedInfluences,
+                        'physicalStates': widget.physicalStates,
+                        'wellbeingActions': _wellbeingActions,
+                      },
+                    );
                   },
                   child: const Text('Next'),
                 ),

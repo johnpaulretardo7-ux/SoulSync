@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -37,21 +36,29 @@ class _PhysicalStateScreenState extends State<PhysicalStateScreen> {
     'Focused': false,
   };
 
+  final Map<String, IconData> _physicalStateIcons = {
+    'Tired': Icons.battery_alert,
+    'Headache': Icons.sick_outlined,
+    'Body Pain': Icons.personal_injury_outlined,
+    'Tense': Icons.sentiment_very_dissatisfied,
+    'Stressed': Icons.psychology_alt_outlined,
+    'Energetic': Icons.flash_on,
+    'Rested': Icons.bed,
+    'Calm': Icons.self_improvement,
+    'Healthy': Icons.favorite_border,
+    'Focused': Icons.center_focus_strong,
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Physical State'),
-      ),
+      appBar: AppBar(title: const Text('Physical State')),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [
-              Colors.blue.shade100,
-              Colors.amber.shade100,
-            ],
+            colors: [Colors.blue.shade100, Colors.amber.shade100],
           ),
         ),
         child: SafeArea(
@@ -62,7 +69,9 @@ class _PhysicalStateScreenState extends State<PhysicalStateScreen> {
               children: [
                 Text(
                   'How are you feeling physically?',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 28),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleLarge?.copyWith(fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40),
@@ -72,6 +81,7 @@ class _PhysicalStateScreenState extends State<PhysicalStateScreen> {
                   alignment: WrapAlignment.center,
                   children: _physicalStates.keys.map((state) {
                     return ChoiceChip(
+                      avatar: Icon(_physicalStateIcons[state]),
                       label: Text(state),
                       selected: _physicalStates[state]!,
                       onSelected: (selected) {

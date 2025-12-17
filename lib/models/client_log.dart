@@ -1,4 +1,3 @@
-
 import 'package:hive/hive.dart';
 
 part 'client_log.g.dart';
