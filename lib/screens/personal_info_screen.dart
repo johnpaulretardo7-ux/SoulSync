@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -36,10 +37,10 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                 context: context,
                 applicationName: 'SoulSync',
                 applicationVersion: '1.0.0',
-                applicationIcon: Icon(
-                  Icons.self_improvement,
-                  size: 48,
-                  color: Colors.brown.shade700,
+                applicationIcon: Image.asset(
+                  'assets/images/logo.png', 
+                  width: 48, 
+                  height: 48
                 ),
                 applicationLegalese: '© 2024 Gemini AI',
                 children: <Widget>[
@@ -120,6 +121,8 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             const SizedBox(height: 80), // Top padding for app bar
+            Image.asset('assets/images/logo.png', height: 150),
+            const SizedBox(height: 16),
             Text(
               'SoulSync',
               textAlign: TextAlign.center,
